@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,11 +12,11 @@ import '../libs/libusb.dart';
 import '../main.dart';
 
 class _DeviceCard extends StatelessWidget {
-  void Function()? onTap;
-  String deviceImageAssetPath;
-  String deviceName;
+  final void Function()? onTap;
+  final String deviceImageAssetPath;
+  final String deviceName;
 
-  _DeviceCard(
+  const _DeviceCard(
       {Key? key,
       this.onTap,
       required this.deviceName,
@@ -36,7 +37,7 @@ class _DeviceCard extends StatelessWidget {
                 Image.asset(
                   deviceImageAssetPath,
                 ),
-                Text(deviceName, style: TextStyle(fontSize: 48.0))
+                Text(deviceName, style: const TextStyle(fontSize: 48.0))
               ],
             ),
           ),
@@ -66,8 +67,8 @@ class _PickDevicePageState extends State<PickDevicePage> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text('New update available!'),
-              content: Text('Do you want redirect to download page?'),
+              title: Text(AppLocalizations.of(context)!.update_available),
+              content: Text(AppLocalizations.of(context)!.download_redirect_question),
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
@@ -75,12 +76,12 @@ class _PickDevicePageState extends State<PickDevicePage> {
                       launch(
                           "https://github.com/pine64/pine64_updater/releases/latest");
                     },
-                    child: Text('Yes')),
+                    child: const Text('Yes')),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('No'),
+                  child: const Text('No'),
                 )
               ],
             );
@@ -127,7 +128,7 @@ class _PickDevicePageState extends State<PickDevicePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!libUSB.initialized) {
         _initNativeLibraries(context);
       }

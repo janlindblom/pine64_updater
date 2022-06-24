@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pine64_updater/main.dart';
 
 class AboutPage extends StatelessWidget {
@@ -8,7 +9,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("About"),
+        title: Text(AppLocalizations.of(context)!.about_page_title),
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
@@ -19,13 +20,11 @@ class AboutPage extends StatelessWidget {
               "PINE64 Updater ${packageInfo.version}",
               style: const TextStyle(fontSize: 28.0),
             ),
-            const Text("© 2022 Marek Kraus and PINE64 Community"),
+            Text(AppLocalizations.of(context)!.about_page_copyright_information),
             const SizedBox(height: 16.0),
-            const Text(
-                "Huge thanks for everyone from community who helped with testing and giving feedback."),
+            Text(AppLocalizations.of(context)!.about_page_thanks),
             const SizedBox(height: 16.0),
-            const Text(
-                "This application uses open-source software, you can find their licenses in LICENSE_3RD_PARTY file.")
+            Text(AppLocalizations.of(context)!.about_page_oss)
           ],
         ),
       ),

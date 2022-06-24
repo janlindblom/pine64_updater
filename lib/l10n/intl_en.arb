@@ -1,0 +1,13 @@
+{ 
+    "app_title": "PINE64 Updater",
+    "update_available": "New update available!",
+    "download_redirect_question": "Do you want redirect to download page?",
+    "about_page_title": "About",
+    "about_page_copyright_information": "© 2022 Marek Kraus and PINE64 Community",
+    "about_page_thanks": "Huge thanks for everyone from community who helped with testing and giving feedback.",
+    "about_page_oss": "This application uses open-source software, you can find their licenses in LICENSE_3RD_PARTY file.",
+    "flash_pinecil_error_flashing": "An error occured during flashing! You can find more information in log.",
+    "flash_pinecil_flashing_successful": "Your device has been successfully flashed! Please unplug the Pinecil.",
+    "update": "Update",
+    "browse": "Browse"
+}

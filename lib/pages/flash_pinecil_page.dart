@@ -9,6 +9,7 @@ import 'package:path/path.dart' as path;
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pine64_updater/libs/libdfu.dart';
 import 'package:pine64_updater/libs/libusb.dart';
 import 'package:http/http.dart' as http;
@@ -459,7 +460,7 @@ class _FlashPinecilPageState extends State<FlashPinecilPage> {
                         }
                       }
                     : null,
-                child: const Text('Browse'),
+                child: Text(AppLocalizations.of(context)!.browse),
               )
             ],
           ),
@@ -469,7 +470,7 @@ class _FlashPinecilPageState extends State<FlashPinecilPage> {
               firmwarePath: _firmwarePathController.text,
               firmwareEntry: _firmwareToFlash,
             ),
-            child: const Text('Update'),
+            child: Text(AppLocalizations.of(context)!.update),
           ),
         ],
       ),
@@ -480,20 +481,19 @@ class _FlashPinecilPageState extends State<FlashPinecilPage> {
     return Step(
       isActive: _currentStep == 2,
       state: _currentStep > 2 ? StepState.complete : StepState.indexed,
-      title: const Text('Update'),
+      title: Text(AppLocalizations.of(context)!.update),
       content: Column(
         children: [
           if (_errorOccured) ...[
-            Text(
-              'An error occured during flashing! You can find more information in log.',
-              style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+            Text(AppLocalizations.of(context)!.flash_pinecil_error_flashing,
+              style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: Text('Exit'))
+                child: const Text('Exit'))
           ] else ...[
-            Text('$_state'),
+            Text(_state),
             const SizedBox(height: 12),
             LinearProgressIndicator(
               value: _progress / 100.0,
@@ -507,10 +507,10 @@ class _FlashPinecilPageState extends State<FlashPinecilPage> {
             children: [
               ExpansionPanel(
                 headerBuilder: (context, isExpanded) => ListTile(
-                  title: Text('Log'),
+                  title: const Text('Log'),
                   trailing: IconButton(
                     onPressed: _copyLog,
-                    icon: Icon(Icons.copy),
+                    icon: const Icon(Icons.copy),
                     tooltip: 'Copy log to clipboard',
                   ),
                 ),
@@ -549,8 +549,7 @@ class _FlashPinecilPageState extends State<FlashPinecilPage> {
     return Step(
       isActive: _currentStep == 3,
       title: const Text('Unplug'),
-      content: const Text(
-          'Your device has been successfully flashed! Please unplug the Pinecil.'),
+      content: Text(AppLocalizations.of(context)!.flash_pinecil_flashing_successful),
     );
   }
 
